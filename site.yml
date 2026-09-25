@@ -1,0 +1,12 @@
+- name: Configure the portfolio web server
+  hosts: web
+  become: true
+  gather_facts: false
+  pre_tasks:
+    - name: Wait for SSH and Python
+      ansible.builtin.wait_for_connection:
+        timeout: 300
+    - name: Gather host facts
+      ansible.builtin.setup:
+  roles:
+    - nginx
